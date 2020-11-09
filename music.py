@@ -1,8 +1,8 @@
 import random
 
-from RandomMusic.create_wav import create_wav
-from RandomMusic.effects import all_effects, post_process
-from RandomMusic.tones import random_note, similar_note, create_note
+from create_wav import create_wav
+from effects import all_effects, post_process
+from tones import random_note, similar_note, create_note
 
 
 class Music:

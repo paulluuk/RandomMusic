@@ -1,4 +1,4 @@
-from RandomMusic.music import create_song
+from music import create_song
 
 
 def run():

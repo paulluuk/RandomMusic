@@ -2,7 +2,7 @@ import random
 import struct
 import os
 
-from RandomMusic.tones import CD_QUALITY_FRAMERATE
+from tones import CD_QUALITY_FRAMERATE
 
 import wave
 from pydub import AudioSegment
@@ -29,8 +29,8 @@ def create_wav(music, n_channels=2, bytes=2, framerate=CD_QUALITY_FRAMERATE):
     title = random_title()
     author = "pluk's random music generator"
     filename = title.replace(" ", "_") + ".wav"
-    pathname = os.path.join("../generated", filename)
-    os.makedirs("../generated", exist_ok=True)
+    pathname = os.path.join("generated", filename)
+    os.makedirs("generated", exist_ok=True)
 
     w = wave.open(pathname, "w")
     w.setparams((n_channels, bytes, framerate, len(music), "NONE", "not compressed"))

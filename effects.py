@@ -1,4 +1,4 @@
-from RandomMusic.tones import random_note, create_note, similar_note
+from tones import random_note, create_note, similar_note
 
 import math
 
@@ -107,25 +107,25 @@ def faded_note(notes=None, length=8000):
 
 
 all_effects += [faded_note]
-#
-#
-# # slowly swap between two tones
-# def swap_notes(notes=None, length=8000):
-#     tone1, tone2 = notes_to_tones(notes)
-#
-#     frames = []
-#     mute_step = 1.0 / length
-#     for i in range(length):
-#         mute = mute_step * i
-#         t1 = next(tone1)
-#         t2 = next(tone2)
-#         t = t1 * mute + t2 * (1.0 - mute)
-#         frames += [(t, t)]
-#
-#     return post_process(frames)
-#
-#
-# all_effects += [swap_notes]
+
+
+# slowly swap between two tones
+def swap_notes(notes=None, length=8000):
+    tone1, tone2 = notes_to_tones(notes)
+
+    frames = []
+    mute_step = 1.0 / length
+    for i in range(length):
+        mute = mute_step * i
+        t1 = next(tone1)
+        t2 = next(tone2)
+        t = t1 * mute + t2 * (1.0 - mute)
+        frames += [(t, t)]
+
+    return post_process(frames)
+
+
+all_effects += [swap_notes]
 
 
 # add a sine wave to the music
@@ -197,26 +197,26 @@ def hill(notes=None, length=8000):
 
 
 all_effects += [hill]
-#
-#
-# # rapidly swap between two tones
-# def swap_notes_quick(notes=None, length=8000):
-#     tone1, tone2 = notes_to_tones(notes)
-#
-#     frames = []
-#     mute_step = 1.0 / length / 10.0
-#     for _ in range(10):
-#         for i in range(length // 10):
-#             mute = mute_step * i
-#             t1 = next(tone1)
-#             t2 = next(tone2)
-#             t = t1 * mute + t2 * (1.0 - mute)
-#             frames += [(t, t)]
-#
-#     return post_process(frames)
-#
-#
-# all_effects += [swap_notes_quick]
+
+
+# rapidly swap between two tones
+def swap_notes_quick(notes=None, length=8000):
+    tone1, tone2 = notes_to_tones(notes)
+
+    frames = []
+    mute_step = 1.0 / length / 10.0
+    for _ in range(10):
+        for i in range(length // 10):
+            mute = mute_step * i
+            t1 = next(tone1)
+            t2 = next(tone2)
+            t = t1 * mute + t2 * (1.0 - mute)
+            frames += [(t, t)]
+
+    return post_process(frames)
+
+
+all_effects += [swap_notes_quick]
 
 
 # fall from tone to 0
@@ -235,52 +235,52 @@ def faller(notes=None, length=8000):
 
 all_effects += [faller]
 
-#
-# # left, right, then center
-# def uppercut(notes=None, length=8000):
-#     tone1, tone2 = notes_to_tones(notes)
-#
-#     frames = []
-#
-#     segment = []
-#     for i in range(length // 4):
-#         t1 = next(tone1)
-#         t2 = 0
-#         segment += [(t1, t2)]
-#     frames += post_process(segment)
-#
-#     segment = []
-#     for i in range(length // 4):
-#         t1 = 0
-#         t2 = next(tone2)
-#         segment += [(t1, t2)]
-#     frames += post_process(segment)
-#
-#     segment = []
-#     for i in range(length // 6):
-#         t1 = next(tone1)
-#         t2 = next(tone1)
-#         segment += [(t1, t2)]
-#     frames += post_process(segment)
-#
-#     segment = []
-#     for i in range(length // 6):
-#         t1 = next(tone2)
-#         t2 = next(tone2)
-#         segment += [(t1, t2)]
-#     frames += post_process(segment)
-#
-#     segment = []
-#     for i in range(length // 6):
-#         t1 = next(tone1)
-#         t2 = next(tone2)
-#         segment += [(t1, t2)]
-#     frames += post_process(segment)
-#
-#     return post_process(frames)
-#
-#
-# all_effects += [uppercut]
+
+# left, right, then center
+def uppercut(notes=None, length=8000):
+    tone1, tone2 = notes_to_tones(notes)
+
+    frames = []
+
+    segment = []
+    for i in range(length // 4):
+        t1 = next(tone1)
+        t2 = 0
+        segment += [(t1, t2)]
+    frames += post_process(segment)
+
+    segment = []
+    for i in range(length // 4):
+        t1 = 0
+        t2 = next(tone2)
+        segment += [(t1, t2)]
+    frames += post_process(segment)
+
+    segment = []
+    for i in range(length // 6):
+        t1 = next(tone1)
+        t2 = next(tone1)
+        segment += [(t1, t2)]
+    frames += post_process(segment)
+
+    segment = []
+    for i in range(length // 6):
+        t1 = next(tone2)
+        t2 = next(tone2)
+        segment += [(t1, t2)]
+    frames += post_process(segment)
+
+    segment = []
+    for i in range(length // 6):
+        t1 = next(tone1)
+        t2 = next(tone2)
+        segment += [(t1, t2)]
+    frames += post_process(segment)
+
+    return post_process(frames)
+
+
+all_effects += [uppercut]
 
 
 # just play a note
